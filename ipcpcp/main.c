@@ -28,6 +28,9 @@ int main(int argc, const char * argv[]) {
     int i;
     pthread_t threadArray[ThreadCnt];
     THREAD_ARG threadArg[ThreadCnt];
+    //
+    srand((int)time(0));
+
     printf("Begin:Producer and Consumer Problem\n");
     
     for (i=0;i<ThreadCnt;i++)
@@ -53,9 +56,7 @@ void* thread_work(void* arg)
 {
     THREAD_ARG* parg=(THREAD_ARG*)arg;
     
-    srand((int)time(0));
-    usleep(parg->id * (rand() % 300));
-    
+    sleep(parg->id * (rand() % 5));
     printf("hi, I am the %dth thread(%u)\n",parg->id,(unsigned int)parg->ptid);
     pthread_exit(NULL);
 }
